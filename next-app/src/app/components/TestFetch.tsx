@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-const testFetch = () => {
+const TestFetch = () => {
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then((response) => response.json())
@@ -14,4 +14,4 @@ const testFetch = () => {
   return <div></div>;
 };
 
-export default testFetch;
+export default TestFetch;

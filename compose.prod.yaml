@@ -1,6 +1,6 @@
 services:
   next-app:
-    container_name: next-app
+    container_name: nextjs-app-route
     build:
       context: ./next-app
       dockerfile: prod.Dockerfile
