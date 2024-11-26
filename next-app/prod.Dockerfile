@@ -20,7 +20,7 @@ RUN \
 
 COPY src ./src
 COPY public ./public
-COPY next.config.js .
+COPY next.config.ts .
 COPY tsconfig.json .
 COPY postcss.config.mjs .
 COPY tailwind.config.ts .
@@ -70,6 +70,7 @@ ARG ENV_VARIABLE
 ENV ENV_VARIABLE=${ENV_VARIABLE}
 ARG NEXT_PUBLIC_ENV_VARIABLE
 ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
+ENV NEXT_PRIVATE_STANDALONE true
 
 # Uncomment the following line to disable telemetry at run time
 # ENV NEXT_TELEMETRY_DISABLED 1
