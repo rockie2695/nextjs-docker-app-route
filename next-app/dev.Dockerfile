@@ -1,11 +1,11 @@
 # syntax=docker.io/docker/dockerfile:1
 
-FROM node:18-alpine
+FROM node:22-alpine
 
 WORKDIR /app
 RUN apk add git
 
-ENV WATCHPACK_POLLING true
+ENV WATCHPACK_POLLING=true
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* ./
