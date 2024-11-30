@@ -1,3 +1,21 @@
+```bash
+# do once
+# Create a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+docker network create my_network
+
+# every Build dev, -p is for setting the project name
+# e.g.docker compose -f compose.dev.yaml build
+# e.g.docker compose -p nextjs-app-route-prod -f compose.prod.yaml build
+docker compose -p xxx -f compose.dev.yaml build
+
+# every Up dev, -p is for setting the project name
+# docker compose -f compose.dev.yaml up
+# e.g.docker compose -p nextjs-app-route-prod -f compose.prod.yaml up -d
+docker compose -p xxx -f compose.dev.yaml up
+```
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
