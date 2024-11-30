@@ -33,9 +33,15 @@ services:
   # Add more containers below (nginx, postgres, etc.)
   next-database:
     image: mongo:latest
-    command: --port 27018
+    environment:
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    command: --port 27018 --auth 
+    #--config /etc/mongo/mongod.conf
     volumes:
       - database:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - my_network2
     ports:

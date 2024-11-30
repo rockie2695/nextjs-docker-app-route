@@ -8,15 +8,28 @@ services:
         ENV_VARIABLE: ${ENV_VARIABLE}
         NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
     restart: always
+    depends_on:
+      - next-database
     ports:
       - 3000:3000
     networks:
-      - my_network
-
+      - my_network2
+  next-database:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    command: --port 27018
+    volumes:
+      - database:/data/db
+    networks:
+      - my_network2
+    ports:
+      - 27018:27018
   # Add more containers below (nginx, postgres, etc.)
 
-# Define a network, which allows containers to communicate
-# with each other, by using their container name as a hostname
+  # Define a network, which allows containers to communicate
+  # with each other, by using their container name as a hostname
 networks:
-  my_network:
+  my_network2:
     external: true
