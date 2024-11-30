@@ -2,7 +2,7 @@
 # do once
 # Create a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
-docker network create my_network
+docker network create my_network2
 
 # every Build dev, -p is for setting the project name
 # e.g.docker compose -f compose.dev.yaml build
