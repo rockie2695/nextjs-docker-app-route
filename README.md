@@ -1,3 +1,5 @@
+# docker init command
+
 ```bash
 # do once
 # Create a network, which allows containers to communicate
@@ -14,7 +16,6 @@ docker compose -p xxx -f compose.dev.yaml build
 # e.g.docker compose -p nextjs-app-route-prod -f compose.prod.yaml up -d
 docker compose -p xxx -f compose.dev.yaml up
 ```
-
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

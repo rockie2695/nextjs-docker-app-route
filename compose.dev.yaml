@@ -6,6 +6,7 @@ services:
       dockerfile: dev.Dockerfile
     depends_on:
       - next-database
+      - next-mariadb
     # Set environment variables directly in the compose file
     environment:
       ENV_VARIABLE: ${ENV_VARIABLE}
@@ -24,7 +25,7 @@ services:
       - ./next-app/postcss.config.mjs:/app/postcss.config.mjs
       - ./next-app/tailwind.config.ts:/app/tailwind.config.ts
       - ./next-app/.env.development.local:/app/.env.development.local
-    restart: always
+    restart: unless-stopped
     ports:
       - 3000:3000
     networks:
@@ -37,15 +38,33 @@ services:
       - MONGO_INITDB_DATABASE=test
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=password
-    command: --port 27018 --auth 
+    command: --port 27018 --auth
     #--config /etc/mongo/mongod.conf
     volumes:
       - database:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    restart: unless-stopped
     networks:
       - my_network2
     ports:
       - 27018:27018
+
+  next-mariadb:
+    image: mariadb:latest
+    container_name: mariadb-compose
+    volumes:
+      - mariadb:/var/lib/mysql
+      - ./init-mariadb.sql:/docker-entrypoint-initdb.d/initdb.sql
+    environment:
+      - MARIADB_ROOT_PASSWORD=rootPassword
+      - MARIADB_DATABASE=test-database
+      - MARIADB_USER=test-user
+      - MARIADB_PASSWORD=test-password
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    networks:
+      - my_network2
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
 networks:
@@ -54,3 +73,4 @@ networks:
 
 volumes:
   database:
+  mariadb:
