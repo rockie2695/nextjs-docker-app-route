@@ -1,5 +1,9 @@
 import Image from "next/image";
 import TestFetch from "./components/TestFetch";
+import { Suspense } from "react";
+import { TestUser } from "./components/TestUser";
+
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
@@ -50,6 +54,9 @@ export default function Home() {
           </a>
         </div>
         <TestFetch />
+        <Suspense>
+          <TestUser />
+        </Suspense>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a

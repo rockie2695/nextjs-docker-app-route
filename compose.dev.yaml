@@ -13,6 +13,7 @@ services:
       NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
       # NEXT_WEBPACK_USEPOLLING: 1
       # Set environment variables based on the .env file
+      MARIA_DATABASE_URL: mysql://root:rootPassword@next-mariadb:3306/test-database?schema=public
     env_file:
       - .env
     volumes:
@@ -25,6 +26,7 @@ services:
       - ./next-app/postcss.config.mjs:/app/postcss.config.mjs
       - ./next-app/tailwind.config.ts:/app/tailwind.config.ts
       - ./next-app/.env.development.local:/app/.env.development.local
+      - ./next-app/prisma:/app/prisma
     restart: unless-stopped
     ports:
       - 3000:3000
