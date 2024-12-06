@@ -13,6 +13,91 @@ export async function TestUser() {
   });
   console.log(partOfUsers);
 
+/*
+// By unique identifier
+const user = await prisma.user.findUnique({
+  where: {
+    email: 'elsa@prisma.io',
+  },
+})
+
+// By ID
+const user = await prisma.user.findUnique({
+  where: {
+    id: 99,
+  },
+})
+  const user = await prisma.user.findUnique({
+  where: {
+    id: '60d5922d00581b8f0062e3a8',
+  },
+})
+  const findUser = await prisma.user.findFirst({
+  where: {
+    posts: {
+      some: {
+        likes: {
+          gt: 100,
+        },
+      },
+    },
+  },
+  orderBy: {
+    id: 'desc',
+  },
+})
+  const users = await prisma.user.findMany({
+  where: {
+    email: {
+      endsWith: 'prisma.io',
+    },
+  },
+})
+  const users = await prisma.user.findMany({
+  where: {
+    OR: [
+      {
+        name: {
+          startsWith: 'E',
+        },
+      },
+      {
+        AND: {
+          profileViews: {
+            gt: 0,
+          },
+          role: {
+            equals: 'ADMIN',
+          },
+        },
+      },
+    ],
+  },
+})
+  const user = await prisma.user.findUnique({
+  where: {
+    email: 'emma@prisma.io',
+  },
+  select: {
+    email: true,
+    name: true,
+  },
+})
+  const user = await prisma.user.findUnique({
+  where: {
+    email: 'emma@prisma.io',
+  },
+  select: {
+    email: true,
+    posts: {
+      select: {
+        likes: true,
+      },
+    },
+  },
+})
+*/
+
   /*
   await prisma.user.create({
     data: {
@@ -50,6 +135,52 @@ export async function TestUser() {
   published: true,
   authorId: 1
 } 
+
+const updateUsers = await prisma.user.updateMany({
+  where: {
+    email: {
+      contains: 'prisma.io',
+    },
+  },
+  data: {
+    role: 'ADMIN',
+  },
+})
+  const updatePosts = await prisma.post.updateMany({
+  data: {
+    views: {
+      increment: 1,
+    },
+    likes: {
+      increment: 1,
+    },
+  },
+})v
+  const upsertUser = await prisma.user.upsert({
+  where: {
+    email: 'viola@prisma.io',
+  },
+  update: {
+    name: 'Viola the Magnificent',
+  },
+  create: {
+    email: 'viola@prisma.io',
+    name: 'Viola the Magnificent',
+  },
+})
+  const deleteUser = await prisma.user.delete({
+  where: {
+    email: 'bert@prisma.io',
+  },
+})
+  const deleteUsers = await prisma.user.deleteMany({
+  where: {
+    email: {
+      contains: 'prisma.io',
+    },
+  },
+})
+  const deleteUsers = await prisma.user.deleteMany({})
   */
 
 
